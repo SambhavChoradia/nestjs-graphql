@@ -1,0 +1,15 @@
+type Company {
+	cuid: ID!
+	name: String!
+	employee: [Employee]
+}
+
+type Query {
+	showCompany: [Company!]
+}
+
+type Mutation {
+	createCompany(name: String!): Company
+	updateCompany(cuid: ID!, name: String!): Company
+	deleteCompany(cuid: ID!): Boolean
+}

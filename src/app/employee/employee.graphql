@@ -1,0 +1,29 @@
+directive @isUUID on INPUT_FIELD_DEFINITION
+
+input CreateEmployee {
+	cuid: ID! @isUUID
+	firstName: String!
+	lastName: String!
+}
+
+input UpdateEmployee {
+	euid: ID!
+	firstName: String!
+	lastName: String!
+}
+
+type Employee {
+	euid: ID!
+	firstName: String!
+	lastName: String
+}
+
+type Query {
+	showEmployee(cuid: String!): [Employee!]
+}
+
+type Mutation {
+	createEmployee(input: CreateEmployee!): Employee
+	updateEmployee(input: UpdateEmployee!): Employee
+	deleteEmployee(euid: ID!): Boolean
+}

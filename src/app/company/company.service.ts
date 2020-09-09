@@ -2,6 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CompanyEntity } from '@app/entity';
+// import { ApolloError } from 'apollo-server';
 
 @Injectable()
 export class CompanyService {
@@ -16,6 +17,7 @@ export class CompanyService {
 		});
 
 		if (!company) {
+			// throw new ApolloError('Company not found', '400');
 			throw new HttpException('Company not found', HttpStatus.BAD_REQUEST);
 		}
 

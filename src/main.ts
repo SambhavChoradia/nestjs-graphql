@@ -1,9 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger, PORT } from '@core';
+import { Logger, PORT, HttpExceptionFilter } from '@core';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
+
+	app.useGlobalFilters(new HttpExceptionFilter());
 	await app.listen(PORT);
 	Logger.debug(`🚀  Server is listening on port ${PORT}`);
 }
